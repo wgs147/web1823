@@ -1,0 +1,610 @@
+<div id="home">
+    <!--    home页面
+    <div class="switch">
+        <input type="checkbox" />
+    </div> -->
+    <div id="homeContainer">
+        <div class="row">
+            <div class="col-md-3 ">
+                <div class="totalDiv bg-white">
+                    <div class="iconDiv bg-green">
+                        <!-- 图标 -->
+                        <i class="iconfont icon-yun"></i>
+                    </div>
+                    <div class="numDiv">
+                        <span>99.9%</span>
+                        <small>SERVER EPTIME</small>
+                    </div>
+                </div>
+                <div class="totalDiv bg-white">
+                    <div class="iconDiv bg">
+                        <!-- 图标 -->
+                        <i class="iconfont icon-ai-user"></i>
+                    </div>
+                    <div class="numDiv">
+                        <span>117k</span>
+                        <small>USER TOTAL</small>
+                    </div>
+                </div>
+                <div class="totalDiv bg-white">
+                    <div class="iconDiv bg-blue">
+                        <!-- 图标 -->
+                        <i class="iconfont icon-18"></i>
+                    </div>
+                    <div class="numDiv">
+                        <span>2,470</span>
+                        <small>NEW DELAY PHOTOS</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <!-- 图标和字 -->
+                <div class="visDiv">
+                    <div id="visContainer">
+                    </div>
+                    <div class="numDiv">
+                        <span>14.85%</span>
+                        <small>More Visitors</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="uptimeDiv">
+                    <div id="uptimeContainer">
+                    </div>
+                    <div class="numDiv">
+                        <span>95.8%</span>
+                        <small>CURRENT SERVER UPTIME</small>
+                    </div>
+                </div>
+                <div class="saleDiv">
+                    <div id="salesContainer">
+                    </div>
+                    <div class="numDiv">
+                        <span>320,45</span>
+                        <small>AVG OF SALES</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 ">
+                <div class="drawDdiv bg-white">
+                    <div id="drawContainer" ></div>
+                    <div class="pageDiv">
+                        <span>PageViwes</span>
+                         <div id="contents1"></div>
+                    </div>
+                    <div class="pageDiv">
+                        <span>PageViwes</span>
+                        <div id="contents2"></div>
+                    </div>
+                    <div class="pageDiv">
+                        <span>PageViwes</span>
+                         <div id="contents3"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 ">
+            	<div class="speed bg-white">
+            		<div class="numberDiv">
+            			<span>15.05mb/s</span>
+            			<small>DOWNLOAN SPEED</small>
+            		</div>
+            		<div id="dowContainer"></div>
+            		<div id="timeContainer"></div>
+            		
+            	</div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+	$(function() {
+
+	    // 画图
+	    drawVis();
+	    drawUptime();
+	    drawSales();
+	    drawContents1();
+	    drawContents2();
+	    drawContents3();
+	    drawCon();
+	    // drawTime();
+	    function drawVis() {
+	        var chart = Highcharts.chart('visContainer', {
+	            chart: {
+	                // 设置图表和区域的距离
+	                margin: [0, 0, 0, 0],
+	            },
+	            colors: ['#63b919', '#cccccc'],
+	            title: {
+	                text: ''
+	            },
+	            credits: {
+	                enabled: false
+	            },
+	            xAxis: {
+	                visible: false,
+	                title: {
+	                    text: ''
+	                }
+	            },
+	            yAxis: {
+	                visible: false,
+	                title: {
+	                    text: ''
+	                }
+	            },
+	            legend: {
+	                // enabled:false,
+	                floating: true,
+	                layout: 'vertical',
+	                align: 'right',
+	                verticalAlign: 'top'
+	            },
+	            plotOptions: {
+	                series: {
+	                    label: {
+	                        connectorAllowed: false
+	                    },
+	                    pointStart: 2010
+	                }
+	            },
+	            series: [{
+	                name: 'PageViews',
+	                data: [43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175, 43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175]
+	            }, {
+	                name: 'Visitors',
+	                data: [24916, 24064, 29742, 29851, 32490, 30282, 38121, 40434, 24916, 24064, 29742, 29851, 32490, 30282, 38121, 40434]
+	            }]
+	        });
+	    }
+
+	    function drawUptime() {
+	        // 柱状图
+	        Highcharts.chart('uptimeContainer', {
+	            colors: ['#7c30bc'],
+	            chart: {
+	                type: 'column',
+	                margin: [0, 0, 0, 0],
+	            },
+	            credits: {
+	                enabled: false
+	            },
+	            title: {
+	                text: ''
+	            },
+	            xAxis: {
+	                type: 'category',
+	                visible: false,
+	            },
+	            yAxis: {
+	                visible: false,
+	                title: {
+	                    text: ''
+	                }
+	            },
+	            legend: {
+	                enabled: false
+	            },
+	            plotOptions: {
+	                series: {
+	                    borderWidth: 0,
+	                    dataLabels: {
+	                        // enabled: true,
+	                        format: '{point.y:.1f}%'
+	                    }
+	                }
+	            },
+	            tooltip: {
+	                headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+	                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+	            },
+	            series: [{
+	                name: 'Uptime',
+	                colorByPoint: true,
+	                data: [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4, 29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6],
+	            }],
+	        });
+	    }
+
+	    function drawSales() {
+	        var chart = Highcharts.chart('salesContainer', {
+	            // colors:[''],
+	            colors: ['#5c9c49', '#6aaa55', '#b6f6a4', '#8ece7b', '#2b6915',
+	                '#377722', '#84c471', '#9edc87'
+	            ],
+	            credits: {
+	                enabled: false
+	            },
+	            chart: {
+	                margin: [0, 0, 0, 100]
+	            },
+	            title: {
+	                floating: true,
+	                text: ''
+	            },
+	            tooltip: {
+	                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+	            },
+	            plotOptions: {
+	                pie: {
+	                    allowPointSelect: true,
+	                    cursor: 'pointer',
+	                    dataLabels: {
+	                        enabled: false,
+	                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+	                        style: {
+	                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+	                        }
+	                    },
+	                }
+	            },
+	            series: [{
+	                type: 'pie',
+	                innerSize: '60%',
+	                name: 'sales',
+	                data: [
+	                    ['Firefox', 45.0],
+	                    ['IE', 26.8],
+	                    ['Chrome', 12.8],
+	                    ['Safari', 8.5],
+	                    ['Opera', 6.2],
+	                    ['其他', 0.7]
+	                ]
+	            }]
+	        });
+	    }
+	    function drawContents1(){
+	    	var ranges = [],
+			// 平均数据，格式：[时间戳, 值]
+			averages = [
+				[1246406400000, 20.5],
+				[1246492800000, 20.8],
+				[1246579200000, 20.7]
+			];
+
+			Highcharts.chart('contents1', {
+					title: {
+						text: ''
+					},
+					xAxis: {
+						type: 'datetime',
+						crosshairs: false,
+						visible:false
+					},
+					yAxis: {
+						visible:false,
+						title: {
+							text: null
+						}
+					},
+					tooltip: {
+						shared: false,
+						valueSuffix: ''
+					},
+					series: [{
+						name: '',
+						data: averages,
+						zIndex: 1, // 控制显示层叠
+						marker: {
+							fillColor: 'white',
+							lineWidth: 2,
+							lineColor: Highcharts.getOptions().colors[0]
+						}
+					}, {
+						name: '',
+						data: ranges,
+						type: 'arearange',
+						lineWidth: 0,
+						linkedTo: ':previous', // 与上一个数据列进行关联，或者直接赋值 0
+						color: Highcharts.getOptions().colors[0],
+						fillOpacity: 0,
+						zIndex: 0,
+						marker: {
+							enabled: false
+						}
+					}]
+				});
+	    }
+	    function drawContents2(){
+	    	var ranges = [],
+			// 平均数据，格式：[时间戳, 值]
+			averages = [
+				[1246406400000, 20.5],
+				[1246492800000, 20.8],
+				[1246579200000, 20.7]
+			];
+
+			Highcharts.chart('contents2', {
+					title: {
+						text: ''
+					},
+					xAxis: {
+						type: 'datetime',
+						crosshairs: false,
+						visible:false
+					},
+					yAxis: {
+						visible:false,
+						title: {
+							text: null
+						}
+					},
+					tooltip: {
+						shared: true,
+						valueSuffix: ''
+					},
+					series: [{
+						name: '',
+						data: averages,
+						zIndex: 1, // 控制显示层叠
+						marker: {
+							fillColor: 'white',
+							lineWidth: 2,
+							lineColor: Highcharts.getOptions().colors[0]
+						}
+					}, {
+						name: '',
+						data: ranges,
+						type: 'arearange',
+						lineWidth: 0,
+						linkedTo: ':previous', // 与上一个数据列进行关联，或者直接赋值 0
+						color: Highcharts.getOptions().colors[0],
+						fillOpacity: 0.3,
+						zIndex: 0,
+						marker: {
+							enabled: false
+						}
+					}]
+				});
+	    }
+	    function drawContents3(){
+	    	var ranges = [],
+			// 平均数据，格式：[时间戳, 值]
+			averages = [
+				[1246406400000, 20.5],
+				[1246492800000, 20.8],
+				[1246579200000, 20.7]
+			];
+
+			Highcharts.chart('contents3', {
+					title: {
+						text: ''
+					},
+					xAxis: {
+						type: 'datetime',
+						crosshairs: true,
+						visible:false
+					},
+					yAxis: {
+						visible:false,
+						title: {
+							text: null
+						}
+					},
+					tooltip: {
+						shared: true,
+						valueSuffix: ''
+					},
+					series: [{
+						name: '',
+						data: averages,
+						zIndex: 1, // 控制显示层叠
+						marker: {
+							fillColor: 'white',
+							lineWidth: 2,
+							lineColor: Highcharts.getOptions().colors[0]
+						}
+					}, {
+						name: '',
+						data: ranges,
+						type: 'arearange',
+						lineWidth: 0,
+						linkedTo: ':previous', // 与上一个数据列进行关联，或者直接赋值 0
+						color: Highcharts.getOptions().colors[0],
+						fillOpacity: 0.3,
+						zIndex: 0,
+						marker: {
+							enabled: false
+						}
+					}]
+				});
+	    }
+	    function drawCon(){
+	    	var chart = Highcharts.chart('drawContainer', {
+			title: {
+				text: '',
+				align: 'center',
+				verticalAlign: 'middle',
+				y: 50
+			},
+			tooltip: {
+				headerFormat: '{series.name}<br>',
+				pointFormat: '{point.name}: <b>{point.percentage:.1f}%</b>'
+			},
+			plotOptions: {
+				pie: {
+					dataLabels: {
+						enabled: true,
+						distance: -50,
+						style: {
+							fontWeight: 'bold',
+							color: 'white',
+							textShadow: '0px 1px 2px black'
+						}
+					},
+					startAngle: -90, // 圆环的开始角度
+					endAngle: 90,    // 圆环的结束角度
+					center: ['50%', '75%']
+				}
+			},
+			series: [{
+				type: 'pie',
+				name: '浏览器占比',
+				innerSize: '50%',
+				data: [
+					['Firefox',   45.0],
+					['IE',       26.8],
+					['Chrome', 12.8],
+					['Safari',    8.5],
+					['Opera',     6.2],
+					{
+						name: '其他',
+						y: 0.7,
+						dataLabels: {
+							// 数据比较少，没有空间显示数据标签，所以将其关闭
+							enabled: false
+						}
+					}
+				]
+			}]
+			});
+	    }  
+	    
+	});
+</script>
+<style>
+#contents1,#contents2,#contents3{
+	height: 80px;
+	width: 200px;
+	float: right;
+}
+#home {
+    color: red;
+}
+
+#homeContainer {
+    width: 95%;
+    margin: 0 auto;
+}
+.bg-white {
+    background: white;
+}
+
+.bg {
+    background: #7d32c0;
+}
+
+.bg-green {
+    background: #63b919;
+}
+
+.bg-blue {
+    background: skyblue;
+}
+
+.totalDiv {
+    overflow: hidden;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.iconDiv,
+.totalDiv .numDiv {
+    float: left;
+}
+
+.iconDiv {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    text-align: center;
+    margin-left: 10px;
+}
+
+.iconDiv i {
+    font-size: 24px;
+    color: white;
+    line-height: 40px;
+    /*margin-left: 10px;*/
+}
+
+.totalDiv .numDiv {
+    margin-left: 20px;
+}
+
+.numDiv span {
+    font-size: 24px;
+    line-height: 24px;
+}
+
+.numDiv small {
+    display: block;
+}
+
+.visDiv,
+.uptimeDiv,
+.saleDiv {
+    position: relative;
+}
+
+#visContainer {
+    height: 206px;
+    margin-top: 10px;
+}
+
+.visDiv .numDiv,
+.uptimeDiv .numDiv,
+.saleDiv .numDiv {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+.uptimeDiv .numDiv,
+.saleDiv .numDiv {
+    top: 1px;
+    left: 10px;
+}
+
+.visDiv .numDiv span {
+    color: green;
+}
+
+#uptimeContainer,
+#salesContainer {
+    height: 98px;
+    margin-top: 10px;
+}
+
+.uptimeDiv span,
+.salesDiv span {
+    font-size: 20px;
+}
+
+.uptimeDiv span {
+    color: #7c30bc;
+}
+.drawDdiv{
+	margin-top: 20px;
+}
+.pageDiv{
+	overflow: hidden;
+}
+#drawContainer{
+	width: 400px;
+	height: 300px;
+}
+.speed{
+	margin-top: 20px;
+}
+#timeContainer{
+	height: 100px;
+	width: 200px;
+}
+#dowContainer{
+	height: 150px;
+	height: 500px;
+}
+
+
+
+
+
+/*#saleContainer{
+	margin-top: 10px;
+}*/
+</style>
